@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="dark" />
 <meta name="theme-color" content="#071011" />
 <meta name="description" content="The Thickness of Time — an interactive photographic space made from fourteen moments of the same room, by Youn Sungmin." />
-<title>then and then — The Thickness of Time | Exhibition Edition v1.3.1</title>
+<title>then and then — The Thickness of Time | Exhibition Edition v1.3.2</title>
 <style>:root{--bg:#071011;--ink:#e0e6de;--muted:#91a89e;--soft:#afbeb5;--line:rgba(209,227,217,.2);--accent:#bcdbce}
 *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0}body{background:var(--bg);color:var(--ink);font-family:Inter,"Helvetica Neue",Arial,sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}button:disabled{opacity:.55;cursor:default}
 #artwork{position:relative;height:100svh;min-height:450px;overflow:hidden;background:#070d0e}#roomCanvas{position:absolute;inset:0;display:block;width:100%;height:100%;z-index:0;touch-action:none;cursor:grab}#roomCanvas:active{cursor:grabbing}.scrim,.grain{pointer-events:none;position:absolute;inset:0}.scrim{z-index:1;background:radial-gradient(ellipse 76% 83% at 49% 52%,transparent 40%,rgba(1,5,7,.23) 78%,rgba(1,5,7,.78) 113%)}.grain{z-index:1;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.42' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.48'/%3E%3C/svg%3E")}
@@ -623,6 +623,42 @@ body{background:#070b0b !important;overflow:hidden}
 
 #artwork .guide-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 #artwork .guide-statement{border:0;border-bottom:1px solid #555;background:transparent;color:#111;font-size:10px;padding:8px 3px;letter-spacing:.05em}
+
+/* v1.3.2 — exhibition entry refinement; artwork rendering unchanged. */
+#artwork .threshold .gate-inner{max-width:min(790px,94vw)}
+#artwork .threshold .gate-inner h1{margin:24px 0 28px;line-height:1.01}
+#artwork .threshold .gate-poem{font-size:clamp(15px,1.32vw,19px);line-height:1.78;letter-spacing:.013em;margin:0 0 35px;color:rgba(231,237,230,.89)}
+#artwork .threshold .gate-guide,#artwork .threshold .gate-one-line{display:none!important}
+#artwork .threshold .enter{min-width:min(310px,calc(100vw - 48px));width:max-content;max-width:100%;padding:17px 18px;border:1px solid rgba(235,239,234,.58);font-size:11px;background:rgba(20,28,28,.22)}
+#artwork .threshold .enter:hover,#artwork .threshold .enter:focus-visible{background:rgba(235,239,234,.14)}
+#artwork .entry-audio{display:flex;align-items:center;gap:9px;width:max-content;max-width:100%;margin-top:21px;color:rgba(238,241,236,.93);cursor:pointer;font-size:10px;letter-spacing:.095em}
+#artwork .entry-audio input{position:absolute;width:20px;height:20px;opacity:0;cursor:pointer}
+#artwork .entry-audio-mark{position:relative;width:15px;height:15px;flex:0 0 15px;border:1px solid rgba(232,237,233,.62);background:transparent}
+#artwork .entry-audio input:checked+.entry-audio-mark{background:#e4ebe5;border-color:#e4ebe5}
+#artwork .entry-audio input:checked+.entry-audio-mark:after{content:'✓';position:absolute;left:2px;top:-2px;color:#172320;font-size:13px}
+#artwork .entry-audio input:focus-visible+.entry-audio-mark{outline:2px solid #fff;outline-offset:4px}
+#artwork .entry-audio small{font-size:9px;color:#aabdb2;letter-spacing:.07em}
+#artwork .threshold .gate-credit{margin-top:47px;font-size:9px;letter-spacing:.16em}
+#artwork .moment-note #nowKR,#artwork #modeInfoKorean{display:none!important}
+#artwork .about-korean[hidden]{display:none!important}
+#artwork .statement-translation{display:block;border:0;border-bottom:1px solid #999;background:transparent;color:#323232;padding:6px 0;font-size:12px;margin:23px 0 6px;cursor:pointer}
+#artwork .statement-translation:hover{color:#777}
+#artwork .about-actions{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+#artwork .about-actions button{padding:0;border:0;border-bottom:1px solid #999;background:transparent;color:#111;font-size:10px;letter-spacing:.06em}
+#artwork .about-actions a{color:#111}
+#artwork .top-nav #aboutBtn{display:inline-flex!important;align-items:center;padding:8px 2px}
+#artwork .top-nav #helpBtn{display:none!important}
+#artwork .touch-hint{font-size:10px;letter-spacing:.13em}
+@media(max-width:760px){
+ #artwork .threshold .gate-inner h1{font-size:clamp(45px,11vw,72px);margin:20px 0 25px}
+ #artwork .threshold .gate-poem{font-size:14px;margin-bottom:30px}
+ #artwork .threshold .gate-credit{margin-top:36px}
+ #artwork .entry-audio{letter-spacing:.055em}
+ #artwork .entry-audio small{font-size:8px}
+ #artwork .top-nav{gap:10px}
+ #artwork .top-nav #aboutBtn{font-size:9px}
+ #artwork .top-nav #soundBtn span:not(#soundState){display:none}
+}
 </style>
 </head>
 <body>
@@ -652,23 +688,23 @@ body{background:#070b0b !important;overflow:hidden}
  <div id="touchHint" class="touch-hint">DRAG TO DISCOVER ANOTHER TIME <span class="arrow">↔</span></div>
  <aside id="modeMessage" class="mode-message" role="region" aria-label="Current view explanation" hidden>
    <div class="mode-message-head"><strong id="modeInfoTitle">OVERLAY</strong><button type="button" id="closeModeMessage" aria-label="Close view explanation">×</button></div>
-   <span id="modeInfoEnglish"></span><small id="modeInfoKorean"></small>
+   <span id="modeInfoEnglish"></span><small id="modeInfoKorean" hidden></small>
   </aside>
  <aside id="quickStart" class="quick-start" hidden aria-label="Quick start instructions">
-   <div class="quick-start-heading"><strong>EXPLORE THE ROOM / 시작 안내</strong><button type="button" id="quickStartClose" class="quick-start-close" aria-label="Close instructions">닫기 · CLOSE ×</button></div>
-   <p class="quick-intro">Move your hand. Let another time appear.<span>같은 방을 세 가지 방식으로 탐색하세요.</span></p>
+   <div class="quick-start-heading"><strong>EXPLORE THE ROOM</strong><button type="button" id="quickStartClose" class="quick-start-close" aria-label="Close instructions">CLOSE ×</button></div>
+   <p class="quick-intro">Move your hand. Let another time appear.</p>
    <div class="quick-modes">
-     <p><b>OVERLAY</b><span>연속적으로 섞이는 시간과 포인터의 다른 순간 · Continuous layers</span></p>
-     <p><b>SLICES</b><span>다른 시간으로 나뉜 화면 · Time in vertical strips</span></p>
-     <p><b>DEPTH</b><span>좌우 드래그로 공간의 깊이 탐색 · Drag to explore depth</span></p>
+     <p><b>OVERLAY</b><span>Continuous layers and a temporal lens</span></p>
+     <p><b>SLICES</b><span>Time in vertical strips</span></p>
+     <p><b>DEPTH</b><span>Drag to explore depth</span></p>
    </div>
-   <p class="quick-last"><b>CHOOSE PHOTOS</b> 14장 중 원하는 사진을 여러 장 선택하세요.<span>PLAY로 자동 감상하고, 진행 슬라이더와 속도를 조절할 수 있어요.</span></p>
-   <button id="quickStartMore" class="quick-start-more" type="button">전체 사용법 보기 / FULL GUIDE ↗</button>
+   <p class="quick-last"><b>CHOOSE PHOTOS</b> Select several photographs to coexist.</p>
+   <button id="quickStartMore" class="quick-start-more" type="button">FULL GUIDE ↗</button>
  </aside>
  <div class="moment-note" aria-live="polite">
    <span class="micro">MOMENT <span id="nowIndex">10</span> / 14</span>
    <strong id="nowTitle">Facing outside</strong>
-   <span class="korean" id="nowKR">바깥을 향해</span>
+   <span class="korean" id="nowKR" hidden>바깥을 향해</span>
    <span id="stateLabel" class="state-label">DRAG TO EXPLORE</span>
    <span id="traceIndicator" class="trace-indicator" hidden>OTHER TIMES</span>
  </div>
@@ -701,10 +737,10 @@ body{background:#070b0b !important;overflow:hidden}
  <section id="advancedPanel" class="settings-panel" aria-label="Extra controls" hidden>
    <div class="panel-head"><span>FINE TUNE</span><button id="closeAdvancedBtn" aria-label="Close extra controls">×</button></div>
    <div class="slider-block"><div class="slider-head"><label for="depth">SPACE DEPTH</label><span id="depthOut">68</span></div><input id="depth" type="range" min="0" max="100" value="68" /></div>
-   <div class="slider-block"><div class="slider-head"><label for="density">TIME VISIBILITY · 다른 시간의 선명도</label><span id="densityOut">86</span></div><input id="density" type="range" min="0" max="100" value="86" /></div>
+   <div class="slider-block"><div class="slider-head"><label for="density">TIME VISIBILITY</label><span id="densityOut">86</span></div><input id="density" type="range" min="0" max="100" value="86" /></div>
    <div class="slider-block"><div class="slider-head"><label for="sliceSoft">SLICE SOFTNESS</label><span id="sliceSoftOut">35</span></div><input id="sliceSoft" type="range" min="0" max="100" value="35" /></div>
    <div class="settings-note">When you are in <strong>SLICES</strong>, increase this to soften the boundaries between time strips.</div>
-   <div class="slider-block sound-level"><div class="slider-head"><label for="soundLevel">SOUND LEVEL · 음향 크기</label><span id="soundLevelOut">55</span></div><input id="soundLevel" type="range" min="0" max="100" value="55" disabled aria-label="Sound level"/><div class="sound-level-note">Enable SOUND in the top menu first. Start at a low volume; headphones recommended.</div></div>
+   <div class="slider-block sound-level"><div class="slider-head"><label for="soundLevel">SOUND LEVEL</label><span id="soundLevelOut">55</span></div><input id="soundLevel" type="range" min="0" max="100" value="55" disabled aria-label="Sound level"/><div class="sound-level-note">Use the SOUND button above to mute or restore audio. Headphones recommended.</div></div>
    <div class="settings-actions"><button id="resetBtn">↺ RESET</button><button id="captureBtn">↓ SAVE IMAGE</button></div>
  </section>
  <button id="mobileControlsBtn" hidden aria-hidden="true" tabindex="-1">MORE CONTROLS</button>
@@ -732,10 +768,10 @@ body{background:#070b0b !important;overflow:hidden}
   <div class="gate-inner">
    <span class="micro">THEN AND THEN / AN INTERACTIVE ROOM</span>
    <h1 id="gateTitle">THE THICKNESS<br><em>OF TIME.</em></h1>
-   <p>Fourteen photographs. One room.<br />What has passed is still here, in layers.<br />Move to see what the room contains.</p>
-   <div class="gate-guide">Three ways to explore: <strong>OVERLAY</strong> — overlapping time · <strong>SLICES</strong> — divided time · <strong>DEPTH</strong> — space and time. <span lang="ko">세 가지 보기 방식으로 같은 방을 탐색하세요.</span></div>
-   <div class="gate-one-line">DRAG TO EXPLORE · CHOOSE MOMENTS · OR PRESS WATCH</div><button id="enterBtn" class="enter">ENTER THE ROOM <span>↗</span></button>
-   <div class="gate-credit">YOUN SUNGMIN · 2026 <span>FOR RESONANT SOUND, ACTIVATE SOUND AFTER ENTRY · HEADPHONES RECOMMENDED</span></div>
+   <p class="gate-poem">Fourteen moments. One room.<br />Move to discover what remains.</p>
+   <button id="enterBtn" class="enter" type="button">ENTER THE ROOM <span aria-hidden="true">↗</span></button>
+   <label class="entry-audio" for="entrySound"><input id="entrySound" type="checkbox" checked /><span class="entry-audio-mark" aria-hidden="true"></span><span><span id="entrySoundText">SOUND ON</span> <small>· HEADPHONES RECOMMENDED</small></span></label>
+   <div class="gate-credit">YOUN SUNGMIN · 2026</div>
   </div>
  </section>
 
@@ -749,26 +785,27 @@ body{background:#070b0b !important;overflow:hidden}
    <p>One room is photographed again and again. People enter and leave; furniture shifts; daylight changes. The room appears continuous, but its moments refuse to stay separate.</p>
    <p>Choose which moments are allowed to coexist, or use all fourteen. Three ways to look: <b>OVERLAY</b> lets moments occupy one place; <b>SLICES</b> makes vertical sections of different times; <b>DEPTH</b> restores the distant view, window, floor and foreground as separate spatial planes, while glimpses of other moments appear between them.</p>
    <p>Move your viewpoint to uncover overlapping photographic times. Different parts of the room preserve different traces. The work does not reconstruct the past as a seamless three-dimensional world. It makes the limits of each photographic instant visible.</p>
-   <p>Based on fourteen original photographs from <i>OUR TIME — 2026 SUMMER</i> by Youn Sungmin. The timeline represents their sequence in the artist book, not verified capture dates. Sound is synthesized live from the selected moments: shifts of light and viewpoint reshape short-lived resonances, breath-like textures, and melodic fragments. Sound begins only when activated by the visitor.</p>
-   <div class="about-korean">같은 방을 반복해서 촬영한 열네 장의 사진. 관객이 시점을 이동하면 지나간 순간들이 공간의 서로 다른 위치에서 겹쳐 나타납니다. 이 작품은 실제 방의 정밀한 3D 복원이 아닌, 사진으로 구성한 시간의 공간적 탐구입니다.</div>
-   <div class="modal-bottom"><span>YOUN SUNGMIN / THEN AND THEN / 2026</span><a href="https://younsungmin.com" target="_blank" rel="noopener noreferrer">YOUNSUNGMIN.COM ↗</a></div>
+   <p>Based on fourteen original photographs from <i>OUR TIME — 2026 SUMMER</i> by Youn Sungmin. The timeline represents their sequence in the artist book, not verified capture dates. Sound is synthesized live from the selected moments: shifts of light and viewpoint reshape short-lived resonances, breath-like textures, and melodic fragments. Sound begins when the visitor enters with sound enabled, and can be muted at any time.</p>
+   <button id="koreanStatementToggle" class="statement-translation" type="button" aria-expanded="false" aria-controls="koreanStatement">한국어로 읽기 +</button>
+   <div id="koreanStatement" class="about-korean" lang="ko" hidden>같은 방을 반복해서 촬영한 열네 장의 사진. 관객이 시점을 이동하면 지나간 순간들이 공간의 서로 다른 위치에서 겹쳐 나타납니다. 이 작품은 실제 방의 정밀한 3D 복원이 아닌, 사진으로 구성한 시간의 공간적 탐구입니다.</div>
+   <div class="modal-bottom"><span>YOUN SUNGMIN / THEN AND THEN / 2026</span><div class="about-actions"><button id="aboutGuideBtn" type="button">HOW TO EXPLORE</button><a href="https://younsungmin.com" target="_blank" rel="noopener noreferrer">YOUNSUNGMIN.COM ↗</a></div></div>
   </div>
  </div>
 
  
  <div id="guide" class="modal" aria-hidden="true">
   <div class="modal-card guide-card" role="dialog" aria-modal="true" aria-labelledby="guideTitle">
-   <button id="closeGuide" class="modal-close guide-close" aria-label="Close guide">닫기 · CLOSE ×</button>
-   <span class="micro">HOW TO EXPLORE / QUICK GUIDE</span>
+   <button id="closeGuide" class="modal-close guide-close" aria-label="Close guide">CLOSE ×</button>
+   <span class="micro">HOW TO EXPLORE</span>
    <h2 id="guideTitle">How to explore this room</h2>
    <div class="guide-steps">
-    <div class="guide-step"><b>1. Choose a view</b><p><strong>OVERLAY</strong> lets different times coexist, <strong>SLICES</strong> divides them, and <strong>DEPTH</strong> creates spatial layers.</p><small>OVERLAY는 시간의 겹침, SLICES는 분할, DEPTH는 공간의 깊이입니다.</small></div>
-    <div class="guide-step"><b>2. Choose photographs</b><p>Open <strong>CHOOSE PHOTOS</strong> and tick several moments. Then press <strong>COMBINE SELECTED</strong>.</p><small>CHOOSE PHOTOS에서 여러 장을 선택한 뒤 COMBINE SELECTED를 누르세요.</small></div>
-    <div class="guide-step"><b>3. Explore by dragging</b><p>Drag left or right to discover other moments. In <strong>DEPTH</strong>, the window, floor, and foreground move at different distances.</p><small>좌우로 드래그하면 다른 시간이 드러납니다. DEPTH에서는 공간층의 움직임을 느낄 수 있습니다.</small></div>
-    <div class="guide-step"><b>4. Watch the sequence</b><p>Press <strong>WATCH</strong> to follow the chosen moments, or use the timeline to skip ahead. The view can be changed from <strong>VIEW</strong>.</p><small>WATCH로 감상하고 재생 막대를 움직일 수 있습니다. VIEW에서 보기 방식을 바꿀 수 있습니다.</small></div>
+    <div class="guide-step"><b>1. Choose a view</b><p><strong>OVERLAY</strong> lets different times coexist, <strong>SLICES</strong> divides them, and <strong>DEPTH</strong> creates spatial layers.</p></div>
+    <div class="guide-step"><b>2. Choose photographs</b><p>Open <strong>CHOOSE PHOTOS</strong> and tick several moments. Then press <strong>COMBINE SELECTED</strong>.</p></div>
+    <div class="guide-step"><b>3. Explore by dragging</b><p>Drag left or right to discover other moments. In <strong>DEPTH</strong>, the window, floor, and foreground move at different distances.</p></div>
+    <div class="guide-step"><b>4. Watch the sequence</b><p>Press <strong>WATCH</strong> to follow the chosen moments, or use the timeline to skip ahead. The view can be changed from <strong>VIEW</strong>.</p></div>
    </div>
-   <div class="guide-note"><strong>SOUND:</strong> switch on sound to hear the room respond. The selected moments and your movement change the sound. It remains OFF until you activate it. 윗부분의 SOUND를 눌러 켜면, 선택한 사진과 움직임에 따라 공명음이 바뀝니다.</div><div class="guide-note">Choose two or more photographs to discover how times coexist. You can always return to all fourteen. 사진을 여러 장 선택해 시간을 구성하고, USE ALL 14로 언제든 원래대로 돌아올 수 있습니다.</div>
-   <div class="modal-bottom"><span>YOUN SUNGMIN / THEN AND THEN / 2026</span><div class="guide-actions"><button id="statementBtn" class="guide-statement" type="button">ABOUT THE WORK ↗</button><button id="guideStartBtn" class="guide-start">닫기 / CLOSE</button></div></div>
+   <div class="guide-note"><strong>SOUND:</strong> switch on sound to hear the room respond. The selected moments and your movement change the sound. Audio starts on entry unless you choose silent entry, and can be muted at any time.</div><div class="guide-note">Choose two or more photographs to discover how times coexist. You can always return to all fourteen.</div>
+   <div class="modal-bottom"><span>YOUN SUNGMIN / THEN AND THEN / 2026</span><div class="guide-actions"><button id="statementBtn" class="guide-statement" type="button">ABOUT THE WORK ↗</button><button id="guideStartBtn" class="guide-start">CLOSE</button></div></div>
   </div>
  </div>
 
@@ -1561,7 +1598,20 @@ function toggleModeMessage(){
 function reset(){activity();closeControls();closeTime();state.activeIndices=null;state.choiceDraft.clear();syncSelectionUI();updateDockLabels();state.target=9;state.tyaw=-.08;state.tpitch=0;state.tzoom=1;state.depth=.68;state.presence=.86;state.sliceSoft=.35;state.pointerX=.52;state.pointerY=.52;state.revealPulse=0;state.mode=2;state.overlayPos=posOfFocus(state.target);state.overlayPosT=state.overlayPos;
  $('depth').value=68;$('density').value=86;$('sliceSoft').value=35;$('depthOut').textContent=68;$('densityOut').textContent=86;$('sliceSoftOut').textContent=35;for(let i=0;i<3;i++){$('mode'+i).classList.toggle('active',i===0);$('mode'+i).setAttribute('aria-pressed',i===0?'true':'false')}
  $('touchHint').classList.remove('hide');state.motionSeen=false; if($('traceIndicator'))$('traceIndicator').hidden=false;mode(2);}
-function enter(){state.entered=true;activity();$('threshold').classList.add('out');$('enterBtn').blur();}
+function enter(){
+ if(state.entered)return;
+ const soundRequested=$('entrySound').checked;
+ state.entered=true;activity();$('threshold').classList.add('out');$('enterBtn').blur();
+ // Create/resume the AudioContext synchronously inside the visitor's ENTRY click.
+ // Respect the explicit silent-entry option and preserve manual mute/unmute.
+ if(soundRequested){
+  state.sound=true;
+  const started=toggleAudio(2.4);
+  updateSoundUI();
+  started.then(updateSoundUI).catch(()=>{state.sound=false;updateSoundUI();});
+ } else {state.sound=false;updateSoundUI();}
+ window.setTimeout(()=>{if(!state.motionSeen)$('touchHint').classList.add('hide');},6500);
+}
 function showAbout(){activity();$('about').classList.add('open');$('about').setAttribute('aria-hidden','false');$('closeAbout').focus()}
 function closeAbout(){const a=$('about');a.classList.remove('open');a.setAttribute('aria-hidden','true');$('aboutBtn').focus()}
 function showGuide(){activity();$('guide').classList.add('open');$('guide').setAttribute('aria-hidden','false');$('closeGuide').focus()}
@@ -1662,6 +1712,7 @@ function initControls(){
  $('autoBtn').onclick=()=>{if(state.gallery)exitGallery();else enterGallery()};
  $('resetBtn').onclick=reset;$('captureBtn').onclick=screenCapture;
  $('enterBtn').onclick=enter;
+ $('entrySound').onchange=()=>{$('entrySoundText').textContent=$('entrySound').checked?'SOUND ON':'SOUND OFF';};
  $('advancedToggle').onclick=()=>{closeModeMessage();toggleControls()};
  $('closeAdvancedBtn').onclick=()=>closeControls();
  $('timeToggle').onclick=()=>{closeModeMessage();toggleTime()};
@@ -1679,6 +1730,12 @@ function initControls(){
  $('replayBtn').onclick=()=>{exitGallery();enterGallery()};
  $('exploreBtn').onclick=()=>exitGallery();
  $('aboutBtn').onclick=showAbout;$('closeAbout').onclick=closeAbout;
+ $('aboutGuideBtn').onclick=()=>{closeAbout();showGuide();};
+ $('koreanStatementToggle').onclick=()=>{
+  const el=$('koreanStatement'),show=el.hidden;
+  el.hidden=!show;$('koreanStatementToggle').setAttribute('aria-expanded',String(show));
+  $('koreanStatementToggle').textContent=show?'한국어 접기 −':'한국어로 읽기 +';
+ };
  $('helpBtn').onclick=showGuide;$('closeGuide').onclick=closeGuide;$('guideStartBtn').onclick=closeGuide;$('statementBtn').onclick=()=>{closeGuide();showAbout()};
  $('quickStartClose').onclick=closeQuickStart;$('quickStartMore').onclick=()=>{closeQuickStart();showGuide()};
  $('about').onclick=e=>{if(e.target===$('about'))closeAbout()};$('guide').onclick=e=>{if(e.target===$('guide'))closeGuide()};
@@ -1786,12 +1843,18 @@ function makeAudio(){
  const seedNoise=ac.createBufferSource();seedNoise.buffer=buffer;seedNoise.loop=true;seedNoise.connect(gestureBand);seedNoise.start();
  return {ctx:ac,master,voices,winds,lp,delay,feedback,wetGain,gestureGain,gestureBand,volume:.55,lastUpdate:-100,lastGestureAt:-100,lastPhoto:-1,compressor,soundModel:'resonant-gestures'};
 }
-async function toggleAudio(){
+async function toggleAudio(entryFadeSeconds=0){
  if(state.sound){
   try{
    if(!audio)audio=makeAudio();if(!audio){state.sound=false;return;}
    await audio.ctx.resume();updateAudio(true);
-   audioParam(audio.master.gain,.72*audio.volume,audio.ctx.currentTime,.42);
+   const at=audio.ctx.currentTime;
+   audio.master.gain.cancelScheduledValues(at);
+   if(entryFadeSeconds>0){
+     // This ramp acts on the existing synth master, not on the visual/audio algorithm.
+     audio.master.gain.setValueAtTime(0,at);
+     audio.master.gain.linearRampToValueAtTime(.72*audio.volume,at+entryFadeSeconds);
+   } else {audioParam(audio.master.gain,.72*audio.volume,at,.42);}
   }catch(e){console.warn('Sound unavailable',e);state.sound=false;}
  }else if(audio&&audio.ctx.state==='running'){
   audioParam(audio.master.gain,0,audio.ctx.currentTime,.11);
